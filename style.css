@@ -1,0 +1,481 @@
+/* ═══════════════════════════════════════════════════════════
+   Mother's Day Page — style.css
+
+   Table of Contents:
+     1.  Custom Properties (Design Tokens)
+     2.  Reset & Base
+     3.  Typography
+     4.  Skip Link (Accessibility)
+     5.  Hero Section
+     6.  Section Utilities
+     7.  Gallery Section
+     8.  Letter Section
+     9.  Memories Section
+     10. Footer
+     11. Fade-in Animation
+     12. Media Queries
+════════════════════════════════════════════════════════════ */
+
+
+/* ─── 1. Custom Properties ────────────────────────────────── */
+
+:root {
+  /* Palette — warm, muted, editorial */
+  --color-bg:           #faf9f7;
+  --color-bg-warm:      #f3ede6;
+  --color-bg-soft:      #ede7de;
+  --color-text:         #1c1c1e;
+  --color-text-muted:   #6e6e73;
+  --color-accent:       #a07060;    /* muted terracotta — used sparingly */
+  --color-border:       #e3dbd2;
+
+  /* Fonts */
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body:    -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Spacing scale */
+  --space-xs:   0.5rem;    /*  8px */
+  --space-sm:   1rem;      /* 16px */
+  --space-md:   2rem;      /* 32px */
+  --space-lg:   4rem;      /* 64px */
+  --space-xl:   7rem;      /* 112px */
+
+  /* Layout */
+  --max-width:          1080px;
+  --max-width-narrow:    660px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ─── 2. Reset & Base ─────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ─── 3. Typography ───────────────────────────────────────── */
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: normal;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+
+/* ─── 4. Skip Link ────────────────────────────────────────── */
+
+/* Visible only on keyboard focus — required for accessibility */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 0.875rem;
+  border-radius: 4px;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+
+/* ─── 5. Hero Section ─────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  background-color: var(--color-bg-warm); /* fallback while image loads */
+  overflow: hidden;
+}
+
+/* Sofia's painting — filtered for vibrancy on the background layer */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('images/IMG_5312.jpeg');
+  background-size: cover;
+  background-position: center top;
+  filter: saturate(1.6) contrast(1.15) brightness(1.05);
+  z-index: 0;
+}
+
+/* Soft white veil — keeps text readable without killing the color */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.52);
+  z-index: 1;
+}
+
+/* Hero inner content and scroll arrow must sit above the two pseudo-element layers */
+.hero__inner,
+.hero__scroll {
+  position: relative;
+  z-index: 2;
+}
+
+.hero__inner {
+  max-width: 800px;
+}
+
+/* Small label above the main title */
+.hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
+}
+
+/* Main display title — large and airy */
+.hero__title {
+  font-size: clamp(3.5rem, 12vw, 8.5rem);
+  color: var(--color-text);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--space-md);
+}
+
+.hero__subtitle {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  color: var(--color-text-muted);
+  max-width: 460px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* Bouncing scroll cue arrow at the bottom of the hero */
+.hero__scroll {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-text-muted);
+  font-size: 1.25rem;
+  opacity: 0.45;
+  transition: opacity 0.3s var(--ease);
+  animation: nudge 2.8s ease-in-out infinite;
+}
+
+.hero__scroll:hover,
+.hero__scroll:focus {
+  opacity: 1;
+  outline: none;
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateX(-50%) translateY(0);   }
+  50%       { transform: translateX(-50%) translateY(7px); }
+}
+
+
+/* ─── 6. Section Utilities ────────────────────────────────── */
+
+.section {
+  padding: var(--space-xl) var(--space-md);
+}
+
+.section__header {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto var(--space-lg);
+  text-align: center;
+}
+
+.section__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
+}
+
+.section__lead {
+  font-size: 1.0625rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+}
+
+
+/* ─── 7. Gallery Section ──────────────────────────────────── */
+
+.gallery {
+  background-color: var(--color-bg);
+}
+
+/* CSS grid with mixed photo sizes for an editorial layout */
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 320px;
+  grid-auto-flow: dense;   /* fills gaps left by spanning items */
+  gap: 10px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* photo-1: tall portrait — spans two rows */
+.gallery__item--large {
+  grid-row: span 2;
+}
+
+/* photo-5: landscape — spans two columns */
+.gallery__item--wide {
+  grid-column: span 2;
+}
+
+.gallery__item {
+  overflow: hidden;
+  border-radius: 3px;
+  background-color: var(--color-bg-soft); /* visible while images are loading */
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s var(--ease);
+}
+
+.gallery__item:hover img {
+  transform: scale(1.04);
+}
+
+
+/* ─── 8. Letter Section ───────────────────────────────────── */
+
+.letter {
+  background-color: var(--color-bg-warm);
+}
+
+.letter__inner {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.letter__salutation {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  color: var(--color-text);
+  margin-bottom: var(--space-lg);
+}
+
+/* Body copy — generous line-height for readability */
+.letter__body {
+  font-size: 1.125rem;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.letter__body p + p {
+  margin-top: 1.5em;
+}
+
+.letter__footer {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.letter__closing {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+/* Handwritten-feel signature using italic serif */
+.letter__signature {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-style: italic;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+
+
+/* ─── 9. Video Message Section ────────────────────────────── */
+
+.message {
+  background-color: var(--color-bg);
+}
+
+/* Center and constrain the player */
+.message__player {
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #000;      /* letterbox background if video has black bars */
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+.message__player video,
+.message__player audio {
+  width: 100%;
+  display: block;
+}
+
+
+/* ─── 10. Footer ──────────────────────────────────────────── */
+
+.footer {
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  background-color: var(--color-bg-warm);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.footer__sub {
+  font-size: 0.775rem;
+  margin-top: 0.35rem;
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+}
+
+
+/* ─── 11. Fade-in Animation ───────────────────────────────── */
+
+/*
+  Elements with .fade-in start invisible.
+  script.js uses IntersectionObserver to add .is-visible
+  when they enter the viewport. The transition lives here.
+*/
+.fade-in {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity  0.75s var(--ease),
+    transform 0.75s var(--ease);
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for grouped items (e.g., gallery, memories) */
+.fade-in[data-delay="1"] { transition-delay: 0.08s; }
+.fade-in[data-delay="2"] { transition-delay: 0.16s; }
+.fade-in[data-delay="3"] { transition-delay: 0.24s; }
+.fade-in[data-delay="4"] { transition-delay: 0.32s; }
+.fade-in[data-delay="5"] { transition-delay: 0.40s; }
+
+
+/* ─── 12. Media Queries ───────────────────────────────────── */
+
+/* Tablet — 2-column gallery */
+@media (max-width: 860px) {
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 260px;
+  }
+
+  /* Remove tall-span on tablet; let images flow naturally */
+  .gallery__item--large {
+    grid-row: span 1;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  :root {
+    --space-xl: 4rem;
+    --space-lg: 2.5rem;
+  }
+
+  .gallery__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 280px;
+    gap: 8px;
+  }
+
+  /* All gallery items go full-width on mobile */
+  .gallery__item--large,
+  .gallery__item--wide {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+  .memories__item {
+    grid-template-columns: 2.25rem 1fr;
+    gap: 0.875rem;
+  }
+
+  .section {
+    padding: var(--space-xl) var(--space-sm);
+  }
+}
+
+/* Respect user's motion preferences — disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero__scroll {
+    animation: none;
+  }
+
+  .gallery__item img {
+    transition: none;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

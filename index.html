@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A tribute to Mom — Happy Mother's Day" />
+  <title>Happy Mother's Day</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Skip link for keyboard / screen reader accessibility -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO SECTION
+       Replace the subtitle text and eyebrow date below.
+       Optionally add a hero background image — see style.css.
+  ════════════════════════════════════════════════════ -->
+  <header class="hero" id="top">
+    <div class="hero__inner">
+
+      <p class="hero__eyebrow">Premium. Limited edition. Irreplaceable.</p>
+
+      <h1 class="hero__title">Happy<br />Mother's Day</h1>
+
+      <p class="hero__subtitle">
+        From the two people who adore you — and one more who can't wait to.
+      </p>
+
+    </div>
+
+    <!-- Animated scroll cue -->
+    <a class="hero__scroll" href="#gallery" aria-label="Scroll down to gallery">↓</a>
+  </header>
+
+
+  <main id="main-content">
+
+    <!-- ═════════════════════════════════════════════════
+         PHOTO GALLERY SECTION
+         Add your images to the /images/ folder and update
+         the src attributes and alt text for each photo.
+         Recommended aspect ratios: square (1:1) or portrait (3:4).
+         The first photo (photo-1) spans two rows — use a portrait
+         image here for best results.
+    ══════════════════════════════════════════════════ -->
+    <section class="gallery section" id="gallery" aria-labelledby="gallery-heading">
+
+      <div class="section__header fade-in">
+        <h2 class="section__title" id="gallery-heading">Look at Us</h2>
+        <p class="section__lead">&hellip;just a few highlights.</p>
+      </div>
+
+      <div class="gallery__grid">
+
+        <!-- Portrait — spans two rows (anchor image) -->
+        <figure class="gallery__item gallery__item--large fade-in" data-delay="1">
+          <img src="images/IMG_6294.jpeg" alt="Mom and daughter on a sunny city street, both in sunglasses" loading="lazy" />
+        </figure>
+
+        <!-- Portrait -->
+        <figure class="gallery__item fade-in" data-delay="2">
+          <img src="images/IMG_4701.jpeg" alt="Mom and daughter playing in the snow" loading="lazy" />
+        </figure>
+
+        <!-- Portrait -->
+        <figure class="gallery__item fade-in" data-delay="3">
+          <img src="images/IMG_4249.jpeg" alt="All of us poolside in Puerto Rico" loading="lazy" />
+        </figure>
+
+        <!-- Portrait -->
+        <figure class="gallery__item fade-in" data-delay="4">
+          <img src="images/IMG_2159.jpeg" alt="Mom and Sofia walking home together" loading="lazy" />
+        </figure>
+
+        <!-- Portrait -->
+        <figure class="gallery__item fade-in" data-delay="5">
+          <img src="images/IMG_4198.jpeg" alt="<!-- Update alt text -->" loading="lazy" />
+        </figure>
+
+        <!-- Landscape — spans two columns -->
+        <figure class="gallery__item gallery__item--wide fade-in" data-delay="1">
+          <img src="images/IMG_4409.jpeg" alt="Family selfie on the beach at sunset" loading="lazy" />
+        </figure>
+
+        <!-- Landscape -->
+        <figure class="gallery__item fade-in" data-delay="2">
+          <img src="images/IMG_4483.jpeg" alt="Family in the pool under a clear sky" loading="lazy" />
+        </figure>
+
+        <!-- Landscape -->
+        <figure class="gallery__item fade-in" data-delay="3">
+          <img src="images/IMG_3139.jpeg" alt="All of us leaving swim lessons" loading="lazy" />
+        </figure>
+
+        <!-- Landscape — spans two columns -->
+        <figure class="gallery__item gallery__item--wide fade-in" data-delay="4">
+          <img src="images/IMG_5704.jpeg" alt="Family selfie in a snow-covered park" loading="lazy" />
+        </figure>
+
+      </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════
+         PERSONAL LETTER SECTION
+         Replace the placeholder paragraphs below with
+         your actual letter copy when you're ready.
+         The salutation and sign-off are editable too.
+    ══════════════════════════════════════════════════ -->
+    <section class="letter section" id="letter" aria-labelledby="letter-heading">
+      <div class="letter__inner">
+
+        <header class="letter__header fade-in">
+          <!-- Replace "Mom" with whatever you call her -->
+          <h2 class="letter__salutation" id="letter-heading">Amorcita,</h2>
+        </header>
+
+        <div class="letter__body fade-in">
+          <p>
+            Happy premium Mother's Day to the most premium of mama premiums.
+            I feel like there should be a different day to celebrate your category.
+          </p>
+          <p>
+            I don't think Sofia knows it yet but she really lucked out with the most
+            loving, smartest, cutest mom possible. Thank you for bringing perfection
+            into our lives and for being the most amazing mom and wife possible.
+            We're really the luckiest to have you. Can't wait 'til shrimpie
+            (shrimpy? shrimpeeee!) is here, sooo exciting!!
+          </p>
+          <p>
+            We love you to the moon and back, twice around the long way
+            (which is what I think Artemis 2 did just the other day&hellip;
+            they stole our line!)
+          </p>
+        </div>
+
+        <footer class="letter__footer fade-in">
+          <p class="letter__signature">Camilo &amp; Sofia</p>
+        </footer>
+
+      </div>
+    </section>
+
+
+    <!-- ═════════════════════════════════════════════════
+         VIDEO MESSAGE SECTION
+         Drop Sofia's video file into /images/ (or a /media/ folder)
+         and update the <source> src below.
+         Supported formats: MP4 (H.264) works everywhere.
+         If you only have audio, swap <video> for <audio> —
+         the .message__player styles work for both.
+    ══════════════════════════════════════════════════ -->
+    <section class="message section" id="message" aria-labelledby="message-heading">
+
+      <div class="section__header fade-in">
+        <h2 class="section__title" id="message-heading">From Sofia</h2>
+        <p class="section__lead">She has something to say.</p>
+      </div>
+
+      <div class="message__player fade-in">
+        <!--
+          Replace the src below with your video file path, e.g.:
+            src="images/sofia-message.mp4"
+          The poster attribute is optional — it shows a still frame
+          before the user presses play. Set it to a nice thumbnail:
+            poster="images/sofia-poster.jpg"
+        -->
+        <video
+          controls
+          playsinline
+          preload="metadata"
+          aria-label="Video message from Sofia"
+        >
+          <source src="images/sofia-message.mp4" type="video/mp4" />
+          Your browser doesn't support video. Ask Camilo to show you in person.
+        </video>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ═════════════════════════════════════════════════
+       FOOTER
+       Replace "Mom" and the year as needed.
+  ══════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <p>A Papa Camilo &amp; Sofia Original Production</p>
+    <p class="footer__sub">All rights reserved &mdash; Coconut Productions &mdash; 2026</p>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
